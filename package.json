@@ -9,6 +9,7 @@
     "lerna": "^8.1.9"
   },
   "scripts": {
-    "build": "npx lerna run build"
+    "build": "npx lerna run build",
+    "prepare": "husky"
   }
 }
