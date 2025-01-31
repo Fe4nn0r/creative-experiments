@@ -1,0 +1,29 @@
+{
+  "name": "compositions",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Florent",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "npx canvas-sketch-cli lib/index.js --open",
+    "build": "esbuild lib/index.js --bundle --minify --outfile=out/index.js ",
+    "start": "npm run build &&npx canvas-sketch-cli out/index.js --open"
+  },
+  "dependencies": {
+    "canvas-sketch": "^0.7.7",
+    "canvas-sketch-util": "^1.10.0",
+    "nice-color-palettes": "^4.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2"
+  }
+}
