@@ -2,8 +2,8 @@ const random = require("canvas-sketch-util/random");
 
 const createColorVariation = (baseHSL) => {
   return {
-    h: baseHSL.h + random.range(-10, 10), // Slight hue variation
-    s: baseHSL.s + random.range(-10, 10), // Slight saturation variation
+    h: baseHSL.h + random.range(-3, 3), // Slight hue variation
+    s: baseHSL.s + random.range(-3, 3), // Slight saturation variation
     l: baseHSL.l, // Keep original lightness
   };
 };

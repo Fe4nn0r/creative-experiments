@@ -88,35 +88,36 @@ const sketch = () => {
           Math.max(0.2, 1 - distanceToLight / (maxDistance * 2))
         );
 
-        switch (shape) {
-          case "triangle":
-            const vertices = [];
-            for (let j = 0; j < 3; j++) {
-              const angle = rotation + (j * 2 * Math.PI) / 3;
-              vertices.push([
-                x + (Math.cos(angle) * size) / 2,
-                y + (Math.sin(angle) * size) / 2,
-              ]);
-            }
-            shapes.push({
-              type: "triangle",
-              vertices,
-              height,
-              lightIntensity,
-              strokeWidth: random.range(1, 3),
-            });
-            break;
-          case "circle":
-            shapes.push({
-              type: "circle",
-              x,
-              y,
-              radius: size / 2,
-              height,
-              lightIntensity,
-              strokeWidth: random.range(1, 3),
-            });
-            break;
+        if (shape === "triangle") {
+          const vertices = [];
+          for (let k = 0; k < 3; k++) {
+            const angle = rotation + (k * 2 * Math.PI) / 3;
+            const vertexX = x + (Math.cos(angle) * size) / 2;
+            const vertexY = y + (Math.sin(angle) * size) / 2;
+            // Add randomness to each vertex
+            vertices.push([
+              vertexX + random.range(-size / 2, size / 2),
+              vertexY + random.range(-size / 2, size / 2),
+            ]);
+          }
+          shapes.push({
+            type: "triangle",
+            vertices,
+            height,
+            lightIntensity,
+            strokeWidth: random.range(1, 3),
+          });
+        } else {
+          // Add randomness to circle position
+          shapes.push({
+            type: "circle",
+            x: x + random.range(-size, size),
+            y: y + random.range(-size, size),
+            radius: size / 2,
+            height,
+            lightIntensity,
+            strokeWidth: random.range(1, 3),
+          });
         }
       }
 
