@@ -181,4 +181,11 @@ const sketch = () => {
   };
 };
 
-canvasSketch(sketch, settings);
+module.exports = {
+  paint: (options) => {
+    canvasSketch(sketch, {
+      ...settings,
+      ...options,
+    });
+  },
+};

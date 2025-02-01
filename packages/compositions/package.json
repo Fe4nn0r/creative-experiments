@@ -14,8 +14,8 @@
     "lib"
   ],
   "scripts": {
-    "dev": "npx canvas-sketch-cli lib/index.js --open",
-    "build": "esbuild lib/index.js --bundle --minify --outfile=out/index.js ",
+    "dev": "npx canvas-sketch-cli src/dev.js --open",
+    "build": "esbuild src/external.js --bundle --minify --outfile=out/index.js ",
     "start": "npm run build &&npx canvas-sketch-cli out/index.js --open"
   },
   "dependencies": {
