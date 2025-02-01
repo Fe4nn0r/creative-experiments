@@ -18,6 +18,17 @@ const sketch = () => {
   random.setSeed(random.getRandomSeed());
 
   const palette = random.shuffle(random.pick(palettes));
+
+  let paletteIndex = 0;
+  const getNextPaletteColor = () => {
+    paletteIndex++;
+    if (paletteIndex >= palette.length) {
+      paletteIndex = 0;
+    }
+
+    return palette[paletteIndex];
+  };
+
   const composition = random.pick(Object.values(compositionConfig));
 
   return ({ context, width, height }) => {
@@ -132,7 +143,7 @@ const sketch = () => {
         [width, height],
         [0, height],
       ],
-      color: random.pick(palette),
+      color: getNextPaletteColor(),
       shapes: fillShape(
         [
           [0, 0],
@@ -154,13 +165,7 @@ const sketch = () => {
     const shapesFromJSON = shapesEntries.map(([name, points], index) => {
       const absolutePoints = convertToAbsolute(points);
 
-      const color = random.pick(
-        palette.filter(
-          (c) =>
-            c !== backgroundShape.color &&
-            !shapesEntries.slice(0, index).find((s) => s.color === c)
-        )
-      );
+      const color = getNextPaletteColor();
 
       return {
         name,
